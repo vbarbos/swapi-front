@@ -1,0 +1,67 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: swpedia
+  namespace: swpedia
+spec:
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  minReadySeconds: 3
+  template:
+    metadata:
+      labels:
+        app: swpedia
+    spec:
+      containers:
+      - name: swpedia
+        image: docker.io/company/swpedia:${APP_VERSION}-prod
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: tz-config
+          mountPath: /etc/localtime
+        ports:
+        - containerPort: 4200
+        resources:
+          requests:
+            cpu: "0.5"
+            memory: 64Mi
+          limits:
+            cpu: "2"
+            memory: 512Mi
+        lifecycle:
+          preStop:
+            exec:
+              command: ["sleep", "1"]
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /status
+            port: 4200
+          initialDelaySeconds: 20
+          periodSeconds: 3
+          timeoutSeconds: 30
+          successThreshold: 1
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /status
+            port: 4200
+          initialDelaySeconds: 20
+          periodSeconds: 3
+          timeoutSeconds: 30
+          successThreshold: 1
+          failureThreshold: 3
+        envFrom:
+        - configMapRef:
+            name: swpedia
+      imagePullSecrets:
+        - name: regsecret
+      volumes:
+        - name: tz-config
+          hostPath:
+           path: /usr/share/zoneinfo/America/Sao_Paulo

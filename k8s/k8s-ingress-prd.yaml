@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: swpedia
+  namespace: swpedia
+spec:
+  rules:
+  - host: swpedia.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: swpedia
+          servicePort: http

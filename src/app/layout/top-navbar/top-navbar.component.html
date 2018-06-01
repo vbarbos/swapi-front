@@ -1,0 +1,59 @@
+<nav role="navigation" class="navbar">
+	<ul class="navbar-nav nav-left">
+		<li class="nav-item hidden-sm">
+			<a mat-ripple href="javascript:void(0)" (click)="toggleAppMobileLeftMenuSidebar()" class="nav-link mobile-menu-trigger">
+				<i class="mdi mdi-backburger"></i>
+			</a>
+		</li>
+		<li class="nav-item hidden-sm-down">
+			<a mat-ripple href="/home" class="nav-link">
+				<span>Home</span>
+			</a>
+		</li>
+	</ul>
+	<ul class="navbar-nav nav-right">
+		<li class="nav-item">
+			<a mat-ripple href="javascript:void(0)" (click)="search.searchStatus = true" class="nav-link">
+				<i class="zmdi zmdi-search"></i>
+			</a>
+		</li>
+		<li class="nav-item dropdown dropdown-lg hidden-sm-down" dropdown>
+			<a mat-ripple href="javascript:void(0)" class="nav-link" dropdownToggle>
+				<i class="zmdi zmdi-invert-colors"></i>
+			</a>
+			<ul class="dropdown-menu dropdown-lg-menu dropdown-menu-right p-15 color-container" *dropdownMenu>
+				<li class="title">
+					<h3>Choose your side</h3>
+				</li>
+				<li>
+					<li>
+						<div class="color-option-check">
+							<label for="theme-d">
+							<input id="theme-d" type="radio" name="setting-theme" [(ngModel)]="currentTheme" (ngModelChange)="setTheme()" value="D" />
+							<span class="icon-check"></span>
+							<span class="split">
+								<span class="color bg-primary-theme-d"></span>
+								<span class="color bg-shade-theme-d"></span>
+							</span>
+							<span class="color bg-menu-darkBlue"></span>
+						</label>
+						</div>
+					</li>
+					<li>
+						<div class="color-option-check">
+							<label for="theme-e">
+							<input id="theme-e" type="radio" name="setting-theme" [(ngModel)]="currentTheme" (ngModelChange)="setTheme()" value="E" />
+							<span class="icon-check"></span>
+							<span class="split">
+								<span class="color bg-primary-theme-e"></span>
+								<span class="color bg-shade-theme-e"></span>
+							</span>
+							<span class="color bg-menu-white"></span>
+						</label>
+						</div>
+					</li>
+			</ul>
+			</li>
+	</ul>
+</nav>
+<topbar-search #search></topbar-search>

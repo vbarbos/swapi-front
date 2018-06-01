@@ -1,0 +1,32 @@
+<nav id="app_main-menu-wrapper">
+    <ul class="navbar-nav nav-logo">
+        <li class="nav-item logo-wrapper">
+            <a href="/dashboards">
+                <div class="logo">
+                    <img src="assets/img/logo/logo-icon.png" alt="Logo">
+                </div>
+                <h1 class="brand-text">Menu</h1>
+            </a>
+        </li>
+        <li class="nav-item right-align-sidebar">
+            <a mat-ripple href="javascript:void(0)" role="button" (click)="toggleMenuSideabar()" class="nav-link menu-trigger">
+                <i class="mdi mdi-backburger"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="sidebar-inner sidebar-push" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
+        <ul class="nav nav-pills flex-column">
+            <li routerLinkActive="active" appNavDropdown class="nav-dropdown">
+                <a mat-ripple href="javascript:void(0)" class="" appNavDropdownToggle><i class="zmdi zmdi-view-quilt"></i>Star Wars Movies</a>
+                <ul class="nav-sub">
+                    <li routerLinkActive="active" appNavDropdown class="nav-dropdown" *ngFor="let movie of movies;let i = index">
+                        <a mat-ripple href="javascript:void(0)" class="" appNavDropdownToggle>{{movie.title}}</a>
+                        <ul class="nav-sub">
+                            <li routerLinkActive="active"><a href="javascript:void(0)" [routerLink]="['/movie/',movie.episode_id]">Details</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
