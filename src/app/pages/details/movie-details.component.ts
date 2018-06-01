@@ -25,7 +25,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.subscription = this._route.params.subscribe(params => {
             this.filmId = params['id'];
-            console.log(this.filmId);
+
             switch (this.filmId) {
                 case '4':
                     this.filmNumber = '1';
@@ -49,7 +49,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
                     this.filmNumber = '7';
                     break;
             }
-            console.log('ei', this.filmNumber);
+
             this.getInfo();
             this.characters = [];
             this.starships = [];
@@ -61,7 +61,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
                 this.filmDetail = data;
                 this.personas = data.characters;
                 this.spaceships = data.starships;
-                console.log('wow', this.filmDetail);
+
             });
     }
 
@@ -71,7 +71,6 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
             this._swapiService.getCharacters(this.personas[i])
                 .subscribe(data => {
                     this.characters.push(data);
-                    console.log('fg', this.characters)
                 });
         }
     }
@@ -82,7 +81,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
             this._swapiService.getCharacters(this.spaceships[i])
                 .subscribe(data => {
                     this.starships.push(data);
-                    console.log('fg', this.starships)
+
                 });
         }
     }

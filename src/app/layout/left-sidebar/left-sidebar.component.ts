@@ -44,7 +44,7 @@ export class LeftSidebarComponent implements OnInit {
         this._swapiService.getFilms()
             .subscribe(data => {
                 this.movies = data.results;
-                console.log(data);
+
             });
     }
 
@@ -53,7 +53,7 @@ export class LeftSidebarComponent implements OnInit {
         this._swapiService.getFilmDetails(this.url)
             .subscribe(data => {
                 this.filmDetails = data;
-                console.log(data);
+
             });
     }
 
