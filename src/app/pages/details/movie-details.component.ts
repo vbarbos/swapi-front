@@ -68,7 +68,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     loadCharacters() {
         this.characters = [];
         for (let i = 0; i < this.personas.length; i++) {
-            this._swapiService.getCharacters(this.personas[i])
+            this._swapiService.getDataFromUrl(this.personas[i])
                 .subscribe(data => {
                     this.characters.push(data);
                 });
@@ -78,7 +78,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     loadStarships() {
         this.starships = [];
         for (let i = 0; i < this.spaceships.length; i++) {
-            this._swapiService.getCharacters(this.spaceships[i])
+            this._swapiService.getDataFromUrl(this.spaceships[i])
                 .subscribe(data => {
                     this.starships.push(data);
 

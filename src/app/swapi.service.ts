@@ -22,8 +22,8 @@ export class swapiService {
         return this._http.get(this.endpoint + path).map(res => res.json())
     }
 
-    getCharacters(url: any) {
-      const path = url;
-      return this._http.get(path).map(res => res.json())
+    getDataFromUrl(url: any) {
+        const path = url;
+        return this._http.get(path).map(res => res.json())
     }
 }
